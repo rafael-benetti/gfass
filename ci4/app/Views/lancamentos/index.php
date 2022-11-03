@@ -98,6 +98,7 @@
                                     <td colspan="7" class="bg-light text-uppercase font-weight-bold"><?php echo $categoria['descricao'] ?><span class="<?php echo $classeOrcamentos; ?> ml-2 py-2"><?php echo !is_null($categoria['valorOrcamento']) ? "Orçamento: R$ " . number_format($categoria['valorOrcamento'], 2, ',', '.') : '' ?></span> Disponível: R$ <?php echo number_format($categoria['orcamentoDisponivel'], 2, ',', '.'); ?> <small></small></td>
                                     <td colspan="7" class="bg-light text-uppercase font-weight-bold"></td>
                                 </tr>
+                                
                             <?php else : ?>
                                 <tr>
                                     <td colspan="7" class="bg-light text-uppercase font-weight-bold"><?php echo $categoria['descricao'] ?></td>
@@ -114,12 +115,15 @@
                                     <td><?php echo $lancamento['notificar_formatado'] ?></td>
                                     <td>R$ <?php echo number_format($lancamento['valor'], 2, ',', '.') ?></td>
 
-                                    <td><?php if($lancamento['anexo']){ ?> <a target="_blank" href="<?php echo base_url().'/upload/comprovantes/'.$lancamento['anexo']; ?>"><img style="width:40px" src="<?php echo base_url().'/upload/comprovantes/'.$lancamento['anexo']; ?>"></a><?php }else { ?>  <img style="width:30px" src="<?php echo base_url().'/assets/imagens/placehold.png' ?>" <?php } ?> </td>
+                                    
+                                    <td><?php if($lancamento['anexo']){ ?> <a target="_blank" href="<?php echo base_url().'/upload/comprovantes/'.$lancamento['anexo']; ?>"><img style="width:40px" src="<?php echo base_url().'/upload/comprovantes/'.$lancamento['anexo']; ?>"> </a> <?php }else { ?>  <img style="width:30px" src="<?php echo base_url().'/assets/imagens/placehold.png' ?>" <?php } ?> </td>
+
                                     
                                     <td class="text-center">
                                         <?php echo anchor("lancamento/{$lancamento['chave']}/edit", 'Editar', ['class' => "btn btn-success btn-sm " . checkLinkPermission('lancamento', 'edit')]) ?>
                                         <?php echo anchor("lancamento/{$lancamento['chave']}/delete/", 'Excluir', ['onclick' => "return confirma()", 'class' => "btn btn-danger btn-sm " . checkLinkPermission('lancamento', 'delete')]) ?>
                                     </td>
+                                    
                                 </tr>
                             <?php endforeach; ?>
                             <tr>
@@ -135,7 +139,8 @@
                     <?php endif; ?>
                     <?php if (empty($search)) : ?>
                         <tr>
-                            <td colspan="7" class="bg-light font-weight-bold text-uppercase">Totalizador</td>
+                        <td colspan="7" class="bg-light font-weight-bold text-uppercase">Totalizador</td>
+                        <td colspan="7" class="bg-light font-weight-bold text-uppercase"></td>
                         </tr>
                         <tr>
                             <td colspan="3" class="text-right">Saldo do mês anterior:</td>
@@ -149,6 +154,7 @@
                             <td colspan="3" class="text-danger text-right">Despesas neste mês (B):</td>
                             <td colspan="4" class="text-danger">R$ <?php echo number_format($despesasMesAtual, 2, ',', '.') ?></td>
                         </tr>
+                        
                         <tr>
                             <td colspan="3" class="text-right">Saldo neste mês (A - B)</td>
                             <?php if ($saldoMesAtual > 0) : ?>
