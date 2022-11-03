@@ -80,8 +80,8 @@
           <?php
           
           if($lancamento['anexo']){
-              echo '<img style="width:300px" src="'.base_url().'/upload/comprovantes/'.$lancamento['anexo'].'">';
-          }
+            echo '<img style="width:50px" src="'.base_url().'/upload/comprovantes/'.$lancamento['anexo'].'">';
+        }
           
           ?>
           
